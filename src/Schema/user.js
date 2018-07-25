@@ -5,8 +5,16 @@ const Schema = mongoose.Schema;
 let userSchema = new Schema({
   displayName: String,
   uid: String,
-  dateCreated: Date,
-  dateUpdated: Date
+  createdAt: Date,
+  updatedAt: Date
+});
+
+userSchema.pre('save', function(next) {
+ this.updatedAt = new Date() 
+ if (!this.createdAt) {
+   this.createdAt = new Date()
+ }
+ next()
 });
 
 let User = mongoose.model("User", userSchema);

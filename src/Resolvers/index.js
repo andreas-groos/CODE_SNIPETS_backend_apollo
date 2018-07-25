@@ -10,7 +10,7 @@ const resolvers = {
     hello: () => 'Hello world!',
   },
   Mutation: {
-    saveUser: async(root, args, context) => await saveUser(args)
+    // saveUser: async(root, args, context) => await saveUser(args)
   }
 }
 

@@ -1,0 +1,47 @@
+{
+  "name": "code-snippets-server",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel-node": "babel-node --presets=env",
+    "start": "nodemon --exec npm run  babel-node ./src/index.js  --inspect",
+    "setup": "nodemon --exec npm run  babel-node ./src/setup.js  --inspect",
+    "build": "rm -rf dist/ && npm run build:src && cp .env dist",
+    "build:src": "babel src/ --out-dir=dist --source-maps",
+    "watch": "npm run build:src --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.6.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "body-parser": "^1.18.2",
+    "cli-progress": "^1.8.0",
+    "cors": "^2.8.4",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "lodash": "^4.17.10",
+    "mongoose": "^5.0.17",
+    "nodemon": "^1.17.2",
+    "papaparse": "^4.4.0",
+    "parsedbf": "^1.0.0",
+    "shpjs": "^3.4.2"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ],
+    "plugins": [
+      "transform-runtime",
+      "transform-object-rest-spread"
+    ],
+    "sourceMaps": true,
+    "retainLines": true
+  }
+}

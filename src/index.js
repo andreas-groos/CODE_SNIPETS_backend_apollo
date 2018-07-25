@@ -2,20 +2,38 @@ const express = require("express");
 import chalk from "chalk";
 import cors from "cors";
 const bodyParser = require("body-parser");
-import mongoose from "mongoose";
+const {
+  ApolloServer,
+  gql
+} = require('apollo-server-express');
+import resolvers from './Resolvers'
+import typeDefs from './typeDefs'
+
 import {
-  Record
-} from "./schema";
+  User
+} from "./Schema";
 require("dotenv").config();
 import mongoConnect from './utils/mongoConnect'
 
-// import {
-//   saveRecord,
-//   getRecord,
-//   getAllRecords
-// } from "./Resolvers";
-const {PORT} = process.env;
+const {
+  PORT
+} = process.env;
 
+// const typeDefs = gql` 
+// type User {
+//   displayName: String
+//   uid: String
+// }
+
+// type Tag {
+//   tagName: String
+// }
+
+// type Query {
+//   hello: String
+//   getUserInfo: User
+// }
+// `
 
 const startServer = async () => {
   // Initialize the app
@@ -23,10 +41,22 @@ const startServer = async () => {
   app.use(cors());
   let msg = await mongoConnect()
   console.log(chalk.green(msg + '\n'))
-  const server = await app.listen(PORT)
-  if (server) {
-    console.log(chalk.green(`Server listening at ${PORT}`));
-  }
+
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers
+  });
+
+  server.applyMiddleware({
+    app
+  });
+
+  app.listen({
+      port: PORT
+    }, () =>
+    console.log(
+      `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`),
+  );
 }
 
 startServer();

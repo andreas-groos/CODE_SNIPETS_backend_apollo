@@ -1,9 +1,17 @@
-import getRecord from "./getRecord";
-import saveRecord from "./saveRecord";
-import getAllRecords from './getAllRecords'
+import {saveUser, getUserInfo} from "./user";
 
-export {
-  getRecord,
-  saveRecord,
-  getAllRecords
-};
+
+
+const resolvers = {
+  Query: {
+    getUserInfo: (root, args, context) => {
+      return getUserInfo(args)
+    },
+    hello: () => 'Hello world!',
+  },
+  Mutation: {
+    saveUser: async(root, args, context) => await saveUser(args)
+  }
+}
+
+export default resolvers

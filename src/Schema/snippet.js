@@ -4,11 +4,13 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 let snippetSchema = new Schema({
-  title: String,
+  snippetName: String,
   _id: String,
-  tags: [String],
+  tags: String,
   description: String,
+  language: String,
   code: String,
+  notes: String,
   createdAt: Date,
   updatedAt: Date
 });

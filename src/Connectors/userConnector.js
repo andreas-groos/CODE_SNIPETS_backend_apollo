@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin'
+var shortid = require('shortid');
 import serviceAccount from '../constants/firebase.json'
-import {User} from '../Schema'
+import {User, Snippet} from '../Schema'
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -19,7 +20,7 @@ export const saveUserConnector = async ({
   return user;
 }
 
-export const getUserInfoConnector = async({token}) => {
+export const getUserInfoConnector = async(token) => {
   let firebaseUser = await getUserObjFromToken(token)
   let user = await User.findOne({uid: firebaseUser.uid})
   if (!user) {
@@ -28,6 +29,21 @@ export const getUserInfoConnector = async({token}) => {
     await user.save()
     return user
   }
-  console.log('user.displayName',user.displayName)
   return user
+}
+
+export const saveSnippetConnector = async(snippet,token) => {
+  let firebaseUser = await getUserObjFromToken(token)
+  let user = await User.findOne({uid: firebaseUser.uid})
+  if (!user) {
+    return new Error({msg: 'user not found'})
+  }
+  snippet._id =  shortid.generate()
+  console.log('snippet',snippet)
+  let newSnippet = new Snippet(snippet)
+  console.log('newSnippet',newSnippet)
+  user.snippets.push(newSnippet)
+  console.log('user',user)
+  await user.save()
+  return newSnippet
 }

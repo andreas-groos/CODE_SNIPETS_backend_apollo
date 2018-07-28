@@ -1,3 +1,3 @@
-import { saveUserConnector, getUserInfoConnector} from './userConnector'
+import { saveUserConnector, getUserInfoConnector, saveSnippetConnector} from './userConnector'
 
-export {saveUserConnector, getUserInfoConnector} 
+export {saveUserConnector, getUserInfoConnector, saveSnippetConnector} 

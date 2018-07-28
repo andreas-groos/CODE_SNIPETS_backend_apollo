@@ -44,7 +44,10 @@ const startServer = async () => {
 
   const server = new ApolloServer({
     typeDefs,
-    resolvers
+    resolvers,
+    context: ({req, res}) => ({
+      token: req.headers['authorization'],
+    })
   });
 
   server.applyMiddleware({

@@ -1,4 +1,4 @@
-import {saveUserConnector, getUserInfoConnector} from '../Connectors'
+import {saveUserConnector, getUserInfoConnector, saveSnippetConnector} from '../Connectors'
 
 // export const saveUser = async (args) => {
 //   console.log('user saved', args);
@@ -10,11 +10,18 @@ import {saveUserConnector, getUserInfoConnector} from '../Connectors'
 //   }
 // }
 
-export const getUserInfo = async (args) => {
-  console.log('getUserInfo' ,args);
-  if (!args.token) {
+export const getUserInfo = async (token) => {
+  if (!token) {
     return new Error({msg: 'no token'})
   }
-  let res = await getUserInfoConnector(args)
+  let res = await getUserInfoConnector(token)
+  return res
+}
+
+export const saveSnippet = async(snippet,token) => {
+  if (!token) {
+    return new Error({msg: 'no token'})
+  }
+  let res = await saveSnippetConnector(snippet,token)
   return res
 }

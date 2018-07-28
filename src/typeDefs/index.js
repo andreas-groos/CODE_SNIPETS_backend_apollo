@@ -13,8 +13,8 @@ type User {
 
 type Snippet {
   snippetName: String
-  tags: [String]
-  _id: ID!
+  tags: String
+  _id: ID
   description: String
   language: String
   code: String
@@ -25,11 +25,12 @@ type Snippet {
 
 type Query {
   hello: String
-  getUserInfo(token: String): User
+  getUserInfo: User
 }
 
 type Mutation {
-  saveUser(token: String): User
+  # saveUser(token: String): User
+  saveSnippet(snippetName: String,tags: String, description: String, language: String, code: String, notes: String): Snippet
 }
 `
 export default typeDefs

@@ -12,6 +12,9 @@ import {saveUserConnector, getUserInfoConnector} from '../Connectors'
 
 export const getUserInfo = async (args) => {
   console.log('getUserInfo' ,args);
+  if (!args.token) {
+    return new Error({msg: 'no token'})
+  }
   let res = await getUserInfoConnector(args)
   return res
 }

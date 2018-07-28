@@ -6,10 +6,21 @@ const typeDefs = gql`
 type User {
   displayName: String
   uid: String
+  createdAt: String
+  updatedAt: String
+  snippets: [Snippet]
 }
 
-type Tag {
-  tagName: String
+type Snippet {
+  snippetName: String
+  tags: [String]
+  _id: ID!
+  description: String
+  language: String
+  code: String
+  notes: String
+  createdAt: String
+  updatedAt: String
 }
 
 type Query {

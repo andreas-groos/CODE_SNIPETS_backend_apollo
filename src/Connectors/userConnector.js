@@ -28,5 +28,6 @@ export const getUserInfoConnector = async({token}) => {
     await user.save()
     return user
   }
+  console.log('user.displayName',user.displayName)
   return user
 }

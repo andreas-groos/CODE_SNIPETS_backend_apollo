@@ -7,8 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel-node": "babel-node --presets=env",
     "start": "nodemon --exec npm run  babel-node ./src/index.js  --inspect",
-    "setup": "nodemon --exec npm run  babel-node ./src/setup.js  --inspect",
-    "build": "rm -rf dist/ && npm run build:src && cp .env dist",
+    "build": "rm -rf dist/ && npm run build:src",
     "build:src": "babel src/ --out-dir=dist --source-maps",
     "watch": "npm run build:src --watch"
   },

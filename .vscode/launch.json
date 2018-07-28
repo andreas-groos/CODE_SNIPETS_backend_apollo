@@ -4,7 +4,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug Es6",
+      "name": "Debug server",
       "cwd": "${workspaceFolder}",
       "sourceMaps": true,
       "preLaunchTask": "npm: build",

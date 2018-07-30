@@ -9,10 +9,12 @@ type User {
   createdAt: String
   updatedAt: String
   snippets: [Snippet]
+  categories: [String]
 }
 
 type Snippet {
   snippetName: String
+  category: String
   tags: String
   _id: ID
   description: String
@@ -30,7 +32,7 @@ type Query {
 
 type Mutation {
   # saveUser(token: String): User
-  saveSnippet(snippetName: String,tags: String, description: String, language: String, code: String, notes: String): Snippet
+  saveSnippet(snippetName: String,category: String, tags: String, description: String, language: String, code: String, notes: String): Snippet
 }
 `
 export default typeDefs

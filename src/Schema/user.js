@@ -6,6 +6,7 @@ let userSchema = new Schema({
   displayName: String,
   uid: String,
   snippets: [snippetSchema],
+  categories: [String],
   createdAt: Date,
   updatedAt: Date
 });

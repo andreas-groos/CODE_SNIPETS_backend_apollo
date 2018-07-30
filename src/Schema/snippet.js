@@ -8,6 +8,7 @@ let snippetSchema = new Schema({
   _id: String,
   tags: String,
   description: String,
+  category: String,
   language: String,
   code: String,
   notes: String,

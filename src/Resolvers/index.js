@@ -1,4 +1,4 @@
-import {getUserInfo, saveSnippet, addCategory} from "./user";
+import {getUserInfo, saveSnippet, addCategory, deleteSnippet} from "./user";
 
 
 
@@ -16,6 +16,9 @@ const resolvers = {
     },
     addCategory: (_,args,context) => {
       return addCategory(args,context.token)
+    },
+    deleteSnippet: (_,args,context) => {
+      return deleteSnippet(args, context.token)
     }
   }
 }

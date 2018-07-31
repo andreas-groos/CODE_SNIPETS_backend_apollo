@@ -2,6 +2,7 @@ import * as admin from 'firebase-admin'
 var shortid = require('shortid');
 import serviceAccount from '../constants/firebase.json'
 import {User, Snippet} from '../Schema'
+import findIndex from 'lodash/findIndex'
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -61,4 +62,16 @@ export const addCategoryConnector = async(categoryName, token) => {
   user.categories.push(categoryName)
   await user.save()
   return {categories: user.categories}
+}
+
+export const deleteSnippetConnector = async(_id, token) => {
+  let firebaseUser = await getUserObjFromToken(token)
+  let user = await User.findOne({uid: firebaseUser.uid})
+  if (!user) {
+    return new Error({msg: 'user not found'})
+  }
+  let index = findIndex(user.snippets, o => _id === o._id)
+  user.snippets.splice(index,1)
+  await user.save()
+  return user.snippets;
 }

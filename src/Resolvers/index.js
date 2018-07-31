@@ -1,4 +1,4 @@
-import {getUserInfo, saveSnippet} from "./user";
+import {getUserInfo, saveSnippet, addCategory} from "./user";
 
 
 
@@ -13,6 +13,9 @@ const resolvers = {
     // saveUser: async(root, args, context) => await saveUser(args)
     saveSnippet:  (_,args,context) => {
       return saveSnippet(args, context.token)
+    },
+    addCategory: (_,args,context) => {
+      return addCategory(args,context.token)
     }
   }
 }

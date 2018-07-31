@@ -19,22 +19,6 @@ const {
   PORT
 } = process.env;
 
-// const typeDefs = gql` 
-// type User {
-//   displayName: String
-//   uid: String
-// }
-
-// type Tag {
-//   tagName: String
-// }
-
-// type Query {
-//   hello: String
-//   getUserInfo: User
-// }
-// `
-
 const startServer = async () => {
   // Initialize the app
   const app = express();

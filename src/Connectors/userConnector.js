@@ -47,3 +47,18 @@ export const saveSnippetConnector = async(snippet,token) => {
   await user.save()
   return newSnippet
 }
+
+export const addCategoryConnector = async(categoryName, token) => {
+  let firebaseUser = await getUserObjFromToken(token)
+  let user = await User.findOne({uid: firebaseUser.uid})
+  if (!user) {
+    return new Error({msg: 'user not found'})
+  }
+  let alreadyExists = user.categories.includes(categoryName)
+  if (alreadyExists) {
+    return new Error({msg: 'category already exists'})
+  }
+  user.categories.push(categoryName)
+  await user.save()
+  return {categories: user.categories}
+}

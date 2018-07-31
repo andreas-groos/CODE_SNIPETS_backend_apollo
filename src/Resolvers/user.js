@@ -1,4 +1,4 @@
-import {saveUserConnector, getUserInfoConnector, saveSnippetConnector} from '../Connectors'
+import {saveUserConnector, getUserInfoConnector, saveSnippetConnector ,addCategoryConnector} from '../Connectors'
 
 // export const saveUser = async (args) => {
 //   console.log('user saved', args);
@@ -23,5 +23,13 @@ export const saveSnippet = async(snippet,token) => {
     return new Error({msg: 'no token'})
   }
   let res = await saveSnippetConnector(snippet,token)
+  return res
+}
+
+export const addCategory = async({categoryName}, token) =>{
+  if (!token) {
+    return new Error({msg: 'no token'})
+  }
+  let res = await addCategoryConnector(categoryName,token)
   return res
 }

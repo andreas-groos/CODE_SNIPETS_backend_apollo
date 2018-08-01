@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 let snippetSchema = new Schema({
   snippetName: String,
   _id: String,
-  tags: String,
+  tags: [String],
   description: String,
   category: String,
   language: String,

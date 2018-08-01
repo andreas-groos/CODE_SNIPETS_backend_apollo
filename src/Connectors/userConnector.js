@@ -40,11 +40,8 @@ export const saveSnippetConnector = async(snippet,token) => {
     return new Error({msg: 'user not found'})
   }
   snippet._id =  shortid.generate()
-  console.log('snippet',snippet)
   let newSnippet = new Snippet(snippet)
-  console.log('newSnippet',newSnippet)
   user.snippets.push(newSnippet)
-  console.log('user',user)
   await user.save()
   return newSnippet
 }

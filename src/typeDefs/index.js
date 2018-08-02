@@ -36,7 +36,7 @@ type Query {
 
 type Mutation {
   # saveUser(token: String): User
-  saveSnippet(snippetName: String,category: String, tags: [String], description: String, language: String, code: String, notes: String): Snippet
+  saveSnippet(snippetName: String, _id: String, category: String, tags: [String], description: String, language: String, code: String, notes: String): Snippet
   addCategory(categoryName: String): Categories
   deleteSnippet(_id: String):  [Snippet]
 }

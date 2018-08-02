@@ -39,11 +39,23 @@ export const saveSnippetConnector = async(snippet,token) => {
   if (!user) {
     return new Error({msg: 'user not found'})
   }
-  snippet._id =  shortid.generate()
-  let newSnippet = new Snippet(snippet)
-  user.snippets.push(newSnippet)
-  await user.save()
-  return newSnippet
+  if (!snippet._id) {
+    // new snippet
+    snippet._id =  shortid.generate()
+    let newSnippet = new Snippet(snippet)
+    user.snippets.push(newSnippet)
+    await user.save()
+    return newSnippet
+  } else {
+    console.log('new');
+    // old snippet is being edited
+    // FIND old snippet
+    let index = findIndex(user.snippets, o => o._id === snippet._id)
+    let updatedSnippet = new Snippet(snippet)
+    user.snippets[index] = updatedSnippet
+    await user.save()
+    return updatedSnippet
+  }
 }
 
 export const addCategoryConnector = async(categoryName, token) => {
